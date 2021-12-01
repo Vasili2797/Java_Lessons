@@ -1,8 +1,5 @@
 package com.Personal_Java_Lessons.lesson3_Operation;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,7 +17,7 @@ public class operation {
         System.out.println(result1);
     }
 
-    public void userInputMultiplication() {
+    public int userInputMultiplication() {
         System.out.println("Hello");
         System.out.println("Please enter all numbers you would like to input!");
         Scanner scan = new Scanner(System.in);
@@ -30,7 +27,18 @@ public class operation {
         while(scan.hasNextDouble()){
             intArray.add(scan.nextDouble());
         }
-        System.out.println((intArray));
+        int arrayLength =intArray.size();
+        System.out.println(intArray);
+        System.out.println("Size of the array is "+arrayLength);
+        int sum=0;
+        for(Double i : intArray){
+            sum+=i;
+        }
+        System.out.println("The sum of the array is: "+sum);
+        double average = sum/arrayLength;
+        System.out.print("The average of the arraylist is: ");
+        System.out.println((double) sum / arrayLength);
+        return sum;
     }
 
         public static void main (String[]args){
