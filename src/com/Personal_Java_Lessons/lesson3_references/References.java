@@ -1,4 +1,4 @@
-package com.Personal_Java_Lessons.lesson2_references;
+package com.Personal_Java_Lessons.lesson3_references;
 
 public class References {
 
