@@ -1,16 +1,15 @@
 package com.Personal_Java_Lessons.lesson21_Serialization;
-
-import java.io.IOException;
-
+import com.Personal_Java_Lessons.lesson21_Serialization.Cat;
+import com.Personal_Java_Lessons.lesson21_Serialization.Serializer;
 public class Main {
     public static void main(String[] args){
+        Cat cat = new Cat();
+        cat.setName("Tom");
+        Cat cat2 = new Cat();
+        cat2.setName("Tom2");
 
-        Serializator serializator = new Serializator();
-        try {
-            Cat cat =serializator.deserialization();
-            System.out.println(cat.getName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Serializer serializer = new Serializer();
+        serializer.serialization(cat);
+        serializer.serialization(cat2);
     }
 }
