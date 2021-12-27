@@ -28,4 +28,38 @@ public class PersonTest {
         assertEquals(4, Person.numberOfPersons());
     }
 
+    @Test
+    public void ShouldReturnNumberOfPersonsInLoop(){
+        for(int i=0;i<4;i++){
+            new Person();
+        }
+        assertEquals(4, Person.numberOfPersons());
+
+        int j =0;
+        while(j<4){
+            new Person();
+            j++;
+        }
+        assertEquals(8, Person.numberOfPersons());
+        j=0;
+        do{
+            new Person();
+            j++;
+        }while(j<4);
+        assertEquals(12, Person.numberOfPersons());
+    }
+    @Test
+    public void demonstrateArrays(){
+        Person[] persons=new Person[4];
+        for(int i=0;i<persons.length;i++){
+           persons[i] = new Person();
+           persons[i].helloWorld();
+       }
+        for(Person person : persons){
+            person.helloWorld();
+        }
+
+        Person[] persons2 = {};
+    }
+
 }
