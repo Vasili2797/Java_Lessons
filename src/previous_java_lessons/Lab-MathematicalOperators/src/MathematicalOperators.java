@@ -1,0 +1,35 @@
+
+public class MathematicalOperators {
+	public static void main(String[] args) {
+		int x = 5;
+		int y = 3;
+		int z;
+		
+		//simple addition
+		z = x + y;
+		System.out.println("The addition will be " + z);
+
+		//simple subtraction
+		z = x - y;
+		System.out.println("The subtraction will be: " + z);
+
+		//simple multiplication
+		z = x *  y;
+		System.out.println("The multiplication will be: " + z);
+
+		//simple division
+		z = x / y;
+		System.out.println("The Division will be: " + z);
+
+		//simple modulus
+		z = x % y;
+		System.out.println("The modulo will be: " + z);
+
+		//float vs. int
+		float f=3.6f;
+		int i = 22;
+		double result = f + i;
+		System.out.println(result);
+	}
+
+}
