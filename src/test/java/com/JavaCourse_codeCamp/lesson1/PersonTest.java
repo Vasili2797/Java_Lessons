@@ -1,3 +1,4 @@
+/*
 package test.java.com.JavaCourse_codeCamp.lesson1;
 
 
@@ -100,3 +101,4 @@ public class PersonTest {
     }
 
 }
+*/
