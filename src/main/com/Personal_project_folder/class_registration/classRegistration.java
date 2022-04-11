@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class classRegistration {
+public class classRegistration implements Serializable{
     public static void main(String[] args) throws IOException {
         boolean isOn = true;
         while (isOn) {
@@ -29,8 +29,8 @@ public class classRegistration {
                 System.out.println("You have chosen " + compsci);
                 computerScience();
             }else if(choice==4){
-                exit();
                 isOn=false;
+                exit();
             }
             else {
                 System.out.println("Wrong choice.");
@@ -61,11 +61,17 @@ public class classRegistration {
         classes.add(englishClass);
     }
     public static void exit() throws IOException{
-        System.out.println("You have selected exit. Your choices for the classes are as follows:\n "
-                            +classes);
+        System.out.println("You have selected exit. Your choices for the classes are as follows:\n ");
+        for(String element : classes){
+            System.out.println(element);
+        }
+        FileOutputStream fos = new FileOutputStream("registeredClasses.txt");
+        PrintWriter pw = new PrintWriter(fos);
+        pw.println(classes);
+        pw.close();
     }
 }
-//So the registered classes will be saved in an arraylist, and at the end it will display for now
+//So the registered classes will be saved in an arraylist, and at the end it will display and save the entries
 
-// I need to add a possibility for me to save the class registration
+//Saves the file until the program restarts
 // I also need to do the same for the bank.java project where it will save the transactions
