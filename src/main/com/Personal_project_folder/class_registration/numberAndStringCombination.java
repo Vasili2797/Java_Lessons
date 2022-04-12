@@ -2,7 +2,7 @@ package main.com.Personal_project_folder.class_registration;
 
 import java.util.Scanner;
 
-public class numberAndStringCombination {
+public class numberAndStringCombination<b> {
 
     public static void main(String[] args){
         System.out.println("Let me try this");
@@ -13,7 +13,9 @@ public class numberAndStringCombination {
         for(int i=0;i<intArray.length;i++) {
             System.out.println(intArray[i] + " " + stringArray[i]);
         }
-        differentLoops();
+        numberAndStringCombination nasc = new numberAndStringCombination();
+        nasc.differentLoops();
+        nasc.whileLoops();
     }
 
     static void differentLoops(){
@@ -32,4 +34,17 @@ public class numberAndStringCombination {
                 }
     }
     }
+    //while loop
+    static void whileLoops() {
+        int a = 5;
+        int b = 9;
+        int c = 4;
+            while (a < 10 && b<12 && c<10) {
+                System.out.println(a + b + c);
+                a++;
+                b++;
+                c++;
+            }
+    }
+
 }
