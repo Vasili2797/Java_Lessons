@@ -64,6 +64,53 @@ public class StreamListSorting {
                 return (int)(o1.getSalary() - o2.getSalary());
             }
         }).collect(Collectors.toList());
+        employeesSortedList.forEach(s-> System.out.println(s));
+        System.out.println();
         System.out.println(employeesSortedList);
+        System.out.println();
+        //Do the same exact thing as above but with a lambda expression
+        System.out.println("The same thing as above but with the lambda Expression");
+        List<Employee> employeesSortedListLambda = employees.stream()
+                .sorted(((o1, o2) -> (int)(o1.getSalary() - o2.getSalary()))).collect(Collectors.toList());
+        System.out.println(employeesSortedListLambda);
+        System.out.println();
+        //To do it in a descending order
+        System.out.println("Employee salaries in a descending order");
+        List<Employee> employeesSortedListLambdaDescendingOrder=employees.stream()
+                        .sorted(((o1, o2) -> (int)(o2.getSalary() - o1.getSalary()))).collect(Collectors.toList());
+        System.out.println(employeesSortedListLambdaDescendingOrder);
+        System.out.println();
+        //additional way to compare and print the values in ascending order
+        System.out.println("values in ascending order");
+        List<Employee>EmployeeSortedList1 = employees.stream().sorted(Comparator.comparingLong(Employee::getSalary))
+                .collect(Collectors.toList());//ascending order
+        System.out.println(EmployeeSortedList1);
+        System.out.println("Reversed");
+        List<Employee>EmployeeSortedList2 = employees.stream().sorted(Comparator.comparing(Employee::getSalary)
+                .reversed()).collect(Collectors.toList());//descending order
+        System.out.println(EmployeeSortedList2);
+
+        //sort employees by their age
+        System.out.println("Employees sorted by their age in an ascending order");
+        List<Employee>SortedByAgeList = employees.stream().sorted(Comparator.comparing(Employee::getAge))
+                .collect(Collectors.toList());
+        System.out.println(SortedByAgeList);
+        System.out.println("Employees sorted by their age in a descending order");
+        List<Employee>SortedByAgeListInDescendingOrder = employees.stream()
+                .sorted(Comparator.comparing(Employee::getAge).reversed()).collect(Collectors.toList());
+        System.out.println(SortedByAgeListInDescendingOrder);
+
+        System.out.println();
+        //List the employees in ascending order with their names
+        List<Employee>AscendingWithTheNames = employees.stream().sorted(Comparator.comparing(Employee::getName))
+                .collect(Collectors.toList());
+        System.out.println(AscendingWithTheNames);
+        System.out.println();
+        //List the names of the employees in a descending order
+        List<Employee>DescendingWithTheNames = employees.stream().sorted(Comparator.comparing(Employee::getName)
+                .reversed()).collect(Collectors.toList());
+        System.out.println(DescendingWithTheNames);
+
+
     }
 }
