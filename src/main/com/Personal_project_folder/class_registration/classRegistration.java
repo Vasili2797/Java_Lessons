@@ -15,7 +15,7 @@ public class classRegistration implements Serializable{
             String compsci = "Computer Science and Technology";
             System.out.println("1)" + math + "\n" +
                     "2)" + english + "\n" +
-                    "3)" + compsci);
+                    "3)" + compsci);//
 
             Scanner scan = new Scanner(System.in);
             int choice = scan.nextInt();
