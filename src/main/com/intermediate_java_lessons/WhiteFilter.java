@@ -1,6 +1,6 @@
 package main.com.intermediate_java_lessons;
 
-import static sun.java2d.cmm.ColorTransform.In;
+//import static sun.java2d.cmm.ColorTransform.In;
 
 public class WhiteFilter {
     public static void main(String[] args){
