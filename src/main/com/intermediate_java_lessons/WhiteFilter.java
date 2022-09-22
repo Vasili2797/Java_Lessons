@@ -1,7 +1,10 @@
 package main.com.intermediate_java_lessons;
 
+<<<<<<< Updated upstream
 //import static sun.java2d.cmm.ColorTransform.In;
 
+=======
+>>>>>>> Stashed changes
 public class WhiteFilter {
     public static void main(String[] args){
         System.out.println(1.0 / 0.0); // with doubles it says infinity, with integers, it says / by zero error
