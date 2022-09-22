@@ -1,0 +1,16 @@
+package RCVDemo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class DemoAutomation {
+	public static void main(String[] args) {
+		String projectPath =System.getProperty("user.dir");
+		System.setProperty("webdriver.chrome.driver", projectPath+"\\drivers\\chromedriver\\chromedriver_win32\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("https://www.google.com");
+//		System.out.print(projectPath);
+		driver.findElement(By.name("q")).sendKeys("Automation step by step");
+	}
+
+}

@@ -1,0 +1,18 @@
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Test1_GoogleSearch {
+	public static void main(String[] args) {
+		
+	}
+	
+	public static void googleSearch() {
+		
+		//set the path for chrome driver executable
+		String projectPath=System.getProperty("user.dir");
+		System.out.print(projectPath);
+		WebDriver driver = new ChromeDriver();
+	}
+}
