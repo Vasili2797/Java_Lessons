@@ -1,4 +1,4 @@
-package emailapp;
+package main.com.EmailAdministrationApplication.src.emailapp;
 
 import java.util.Scanner;
 
