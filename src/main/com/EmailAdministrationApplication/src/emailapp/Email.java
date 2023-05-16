@@ -1,6 +1,8 @@
 package main.com.EmailAdministrationApplication.src.emailapp;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Email {
 	private String firstName;
@@ -14,7 +16,7 @@ public class Email {
 	private String companySuffix = "aeycompany.com";
 
 	// Constructor to receive the first and the last name
-	public Email(String firstName, String lastName) {
+	public Email(String firstName, String lastName) throws IOException {
 		this.firstName = firstName;
 		this.lastName = lastName;
 
@@ -30,21 +32,32 @@ public class Email {
 	}
 
 	// Ask for the department
-	private String setDepartment() {
-		System.out.print("New worker: " + firstName + " " + lastName
-				+ ".\n\n DEPARTMENT CODES:\n1 Sales\n2 Development\n3 Accounting \n0 None\nEnter department code:");
-		Scanner deptScanner = new Scanner(System.in);
-		int department = deptScanner.nextInt();
-		if (department == 1) {
-			return "Sales";
-		} else if (department == 2) {
-			return "dev";
-		} else if (department == 3) {
-			return "Accounting";
-		} else {
-			return "noDepartment";
-		}
+	private String setDepartment() throws IOException {
 
+		System.out.print("New worker: " + firstName + " " + lastName
+				+ ".\n\n DEPARTMENT CODES:\n1 Sales\n2 Development\n3 Accounting \n0 None\n\nEnter department code:");
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String department = reader.readLine();
+		String[] deptArray = { "Sales", "Development", "Accounting", "noDepartment" };
+		for (int i = 0; i <= deptArray.length; i++) {
+			if (department.equals("1")) {
+				department = "Sales";
+				break;
+			} else if (department.equals("2")) {
+				department = "Development";
+				break;
+			} else if (department.equals("3")) {
+				department = "Accounting";
+				break;
+			} else if (department.equals("0")) {
+				System.out.println();
+				System.out.println("Please contact HR for help with department using current work email");
+				department = "noDepartment";
+				break;
+			}
+		}
+		return department;
 	}
 
 	// Generate a random password
@@ -88,6 +101,6 @@ public class Email {
 	public String getInformation() {
 		return "Name: " + this.firstName + " " + this.lastName + "\nEmail: " + this.email + "\nMailbox Capacity "
 				+ this.mailboxCapacity;
-
 	}
+
 }
