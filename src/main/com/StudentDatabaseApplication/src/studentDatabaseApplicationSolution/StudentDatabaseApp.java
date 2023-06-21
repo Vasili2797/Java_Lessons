@@ -1,4 +1,4 @@
-package main.com.StudentDatabaseApplication.src.studentDatabaseApplicationSolution;
+package studentDatabaseApplicationSolution;
 
 public class StudentDatabaseApp {
 
