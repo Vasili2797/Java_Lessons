@@ -1,17 +1,12 @@
-package studentDatabaseApplicationSolution;
+package main.com.StudentDatabaseApplication.src.studentDatabaseApplicationSolution;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Student {
-
 	private String firstName;
 	private String lastName;
 	private static String gradeYear;
-	private int studentID;
-	private String courses;
-	private int tuitionBalance;
-	private int costOfCourse = 600;
+	private String studentID;
 	Scanner scanner = new Scanner(System.in);
 
 	// Constructor: prompt user to enter student's name and year
@@ -25,7 +20,8 @@ public class Student {
 		Student.gradeYear = scanner.nextLine();
 
 		System.out.println(firstName + " " + lastName + " " + studentGradeYear(Student.gradeYear));
-		System.out.println("Your new studentID is:\n" + Student.gradeYear + generateID().toString());
+		studentID=Student.gradeYear + generateID().toString();
+		System.out.println("Your new studentID is:\n" + studentID);
 		StudentClassEnrollment enrollment = new StudentClassEnrollment();
 		enrollment.enrollInCourses();
 	}
@@ -54,13 +50,5 @@ public class Student {
 		}
 		return new String(IDChar);
 	}
-
 }
 
-// View balance
-/*
- * For Each registered course, I will add a certain amount to the total, which
- * is originally 0, and show the amount
- */
-
-// Pay tuition
