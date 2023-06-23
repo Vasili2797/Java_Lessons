@@ -1,9 +1,11 @@
 package main.com.StudentDatabaseApplication.src.studentDatabaseApplicationSolution;
 
+import java.io.IOException;
+
 public class StudentDatabaseApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("Hello.\nAnd thank you for using our service\n");
-		Student student1 = new Student();
+		Student student = new Student();
 	}
 }

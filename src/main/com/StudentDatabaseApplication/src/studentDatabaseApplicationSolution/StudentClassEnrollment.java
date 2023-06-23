@@ -12,8 +12,7 @@ public class StudentClassEnrollment {
 	Scanner scanner = new Scanner(System.in);
 	ArrayList<String> coursesRegistered = new ArrayList<>();
 
-	public void enrollInCourses() {
-
+	public void enrollInCourses(Student student) {
 		System.out.println("Thank you for deciding to register to our curriculum. "
 				+ "Please write down the list of courses you wish to take: ");
 		System.out.println("Please Write 0 when finished:");
@@ -40,6 +39,8 @@ public class StudentClassEnrollment {
 		if (coursesRegistered.size() >= 1) {
 			System.out.println("You are currently registered in these classrooms:");
 			System.out.println(coursesRegistered);
+		}else{
+			System.out.println("You have not registered for any courses.");
 		}
 	}
 	// View balance
