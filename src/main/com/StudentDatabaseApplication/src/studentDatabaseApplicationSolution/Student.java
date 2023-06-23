@@ -1,9 +1,6 @@
 package main.com.StudentDatabaseApplication.src.studentDatabaseApplicationSolution;
 
-import java.awt.*;
 import java.io.*;
-import java.net.URI;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Scanner;
 
