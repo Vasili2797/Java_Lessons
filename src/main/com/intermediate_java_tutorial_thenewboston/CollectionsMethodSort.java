@@ -1,9 +1,7 @@
 package main.com.intermediate_java_tutorial_thenewboston;
 
-<<<<<<< Updated upstream
 //import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-=======
->>>>>>> Stashed changes
+
 
 import java.util.*;
 //import java.util.Collections;

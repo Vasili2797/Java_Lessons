@@ -1,16 +1,15 @@
 package main.com.Personal_Java_Lessons.lesson22_InputOutput;
 
-<<<<<<< Updated upstream
 //import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.*;
 //import java.nio.charset.StandardCharsets;
-=======
+
 // import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.*;
 // import java.nio.charset.StandardCharsets;
->>>>>>> Stashed changes
+
 
 public class fileOutputStream {
     //FileOutputStream fileOutPutStream;
