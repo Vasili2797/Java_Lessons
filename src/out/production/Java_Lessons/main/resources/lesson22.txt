@@ -1,1 +1,0 @@
-Some String to write into fileNew string variable to see new functionalities
