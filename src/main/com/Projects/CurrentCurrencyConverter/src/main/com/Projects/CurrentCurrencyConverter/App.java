@@ -1,4 +1,15 @@
+package main.com.Projects.CurrentCurrencyConverter.src;
+/*
+ * For this current moment, I will have to say that everything here functions as they should.
+ * Next Step is to ask the user for a country
+ * 
+ * The website used: https://app.exchangerate-api.com/dashboard
+ * The API key: "f3468cbc21776760eb1cebca"
+ * Full api call string link: "https://v6.exchangerate-api.com/v6/f3468cbc21776760eb1cebca/latest/USD"
+ * 
+ * */
 
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,12 +21,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-import org.json.JSONObject;
-
 public class App {
 
-	static String apiKey;
-	static String apiCallStringIUse;
+	static String apiKey = "f3468cbc21776760eb1cebca";
+	static String apiCallStringIUse = "https://v6.exchangerate-api.com/v6/f3468cbc21776760eb1cebca/latest/";
 
 	static String enteredCountry = null;
 	static String CurrencyToExchangeFrom = null;

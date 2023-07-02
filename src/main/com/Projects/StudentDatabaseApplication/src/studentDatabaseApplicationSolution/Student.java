@@ -46,8 +46,14 @@ public class Student {
 		String allTheInformation="First Name:"+firstName+",Last Name: "+lastName+",Grade Level: "
 				+gradeYear+",Student ID: "+studentID+",";
 		
-		File fileOfNewRegistrar = new File("..\\Programming\\Java_Lessons\\src\\main\\com\\" +
-				"StudentDatabaseApplication\\src\\studentDatabaseApplicationSolution\\resourcesFolder\\data.txt");
+		File fileOfNewRegistrar = new File("..\\Programming\\Java_Lessons\\src\\main\\com\\Projects" +
+				"\\StudentDatabaseApplication\\src\\studentDatabaseApplicationSolution\\resourcesFolder\\data.txt");
+
+		/*
+		"C:\\Users\\nashv\\Desktop\\Programming\\" +
+				"Java_Lessons\\src\\main\\com\\Projects\\StudentDatabaseApplication" +
+				"\\src\\studentDatabaseApplicationSolution\\resourcesFolder\\data.txt"
+		* */
 
 		FileWriter fileWriter = new FileWriter(fileOfNewRegistrar, true);
 		fileWriter.write(allTheInformation);
