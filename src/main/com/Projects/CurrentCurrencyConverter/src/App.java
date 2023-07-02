@@ -18,51 +18,44 @@ public class App {
 	static String apiCallStringIUse;
 
 	static String enteredCountry = null;
+	static String CurrencyToExchangeFrom = null;
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	static String fixedCurrencyToExchangeString;
 
 	public static void main(String[] args) {
 		System.out.println("This app should be able to get the current price of any currency in real time"
 				+ " and after finding the price in real time, it will give the option of how much I will get"
 				+ "\nfor an exact amount in that instantaneous time. For example, 100 dollars in GBP at this instant.");
+		System.out.println("From Which Currency?: ");
 
 		try {
 			userInput();
-		} catch (IOException e) {
+			System.out.println("To Which Currency?");
+			enteredCountry = reader.readLine();
+			String fixedCurrencyToBeExchangedIntoString = traverseAString(enteredCountry);
+			System.out.println("The exchange Currency selected is: " + fixedCurrencyToBeExchangedIntoString);
+			currentPriceFetchInUSD(fixedCurrencyToBeExchangedIntoString);
+		} catch (URISyntaxException | IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-
-		try {
-			currentPriceFetchInUSD();
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-
 	}
 
 	public static void userInput() throws IOException {
 
-		System.out.println("Please input the currency code of the country which currency you would like to convert!");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = reader.readLine();
-		char firstLetter = input.charAt(0);
-		if (!(Character.isUpperCase(firstLetter))) {
-			char capitalLetter = Character.toUpperCase(firstLetter);
-			enteredCountry = input.replace(input.charAt(0), capitalLetter);
-		} else {
-			enteredCountry = input;
-		}
-		System.out.println("The country selected is: " + enteredCountry);
+
+		String correctInput = traverseAString(input);
+		System.out.println("The country selected is: " + correctInput);
+		CurrencyToExchangeFrom = correctInput;
+		System.out.println("");
 	}
 
-	public static void currentPriceFetchInUSD() throws URISyntaxException, IOException, InterruptedException {
-		HttpRequest getRequest = HttpRequest.newBuilder().uri(new URI(apiCallStringIUse))
+	public static void currentPriceFetchInUSD(String str) throws URISyntaxException, IOException, InterruptedException {
+		enteredCountry = str;
+		HttpRequest getRequest = HttpRequest.newBuilder().uri(new URI(apiCallStringIUse + CurrencyToExchangeFrom))
 				.header("Autorizations", apiKey).GET().build();
 
 		HttpClient httpClient = HttpClient.newHttpClient();
-
 		HttpResponse<String> postResponse = httpClient.send(getRequest, BodyHandlers.ofString());
 		String newHttpResponseString = postResponse.toString();
 		System.out.println(postResponse);
@@ -72,6 +65,13 @@ public class App {
 		Object level = getGEO.get(enteredCountry);
 
 		System.out.println(postResponse.body());
-		System.out.printf("The value of 1 USD in %s is %s", enteredCountry, level);
+
+		System.out.printf("The value of 1 %s in %s is %s", CurrencyToExchangeFrom, enteredCountry, level);
+	}
+
+	public static String traverseAString(String str) {
+		String correctString = str.toUpperCase();
+		System.out.println(correctString);
+		return correctString;
 	}
 }
