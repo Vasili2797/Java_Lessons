@@ -1,13 +1,4 @@
-package main.com.Projects.CurrentCurrencyConverter.src;
-/*
- * For this current moment, I will have to say that everything here functions as they should.
- * Next Step is to ask the user for a country
- * 
- * The website used: https://app.exchangerate-api.com/dashboard
- * The API key: "f3468cbc21776760eb1cebca"
- * Full api call string link: "https://v6.exchangerate-api.com/v6/f3468cbc21776760eb1cebca/latest/USD"
- * 
- * */
+package main.com.Projects.CurrentCurrencyConverter;
 
 import org.json.JSONObject;
 
@@ -20,16 +11,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Scanner;
 
 public class App {
-
-	static String apiKey = "f3468cbc21776760eb1cebca";
-	static String apiCallStringIUse = "https://v6.exchangerate-api.com/v6/f3468cbc21776760eb1cebca/latest/";
-
+	static String apiKey = "";
+	static String apiCallStringIUse = "";
 	static String enteredCountry = null;
 	static String CurrencyToExchangeFrom = null;
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	static String fixedCurrencyToExchangeString;
 
 	public static void main(String[] args) {
 		System.out.println("This app should be able to get the current price of any currency in real time"
@@ -62,20 +51,39 @@ public class App {
 	public static void currentPriceFetchInUSD(String str) throws URISyntaxException, IOException, InterruptedException {
 		enteredCountry = str;
 		HttpRequest getRequest = HttpRequest.newBuilder().uri(new URI(apiCallStringIUse + CurrencyToExchangeFrom))
-				.header("Autorizations", apiKey).GET().build();
+				.header("Authorizations", apiKey).GET().build();
 
 		HttpClient httpClient = HttpClient.newHttpClient();
 		HttpResponse<String> postResponse = httpClient.send(getRequest, BodyHandlers.ofString());
 		String newHttpResponseString = postResponse.toString();
-		System.out.println(postResponse);
 
+		System.out.println();
 		JSONObject jsonObject = new JSONObject(postResponse.body());
 		JSONObject getGEO = jsonObject.getJSONObject("conversion_rates");
 		Object level = getGEO.get(enteredCountry);
 
-		System.out.println(postResponse.body());
+		System.out.println("How much money would you like to exchange?");
 
-		System.out.printf("The value of 1 %s in %s is %s", CurrencyToExchangeFrom, enteredCountry, level);
+		Scanner scan = new Scanner(System.in);
+		int amountOfCurrency=scan.nextInt();
+		double levelInteger=((Number)level).doubleValue();
+		double total=amountOfCurrency*levelInteger;
+
+		System.out.printf("The value of 1 %s in %s is %s", CurrencyToExchangeFrom, enteredCountry, String.format("%.4f",level));
+		System.out.println();
+		System.out.printf("The value of %s %s in %s is %s", amountOfCurrency,
+				CurrencyToExchangeFrom, enteredCountry, String.format("%.4f",total));
+	}
+
+	public static void doYouWishToContinue() throws IOException {
+		System.out.println("Do you wish to continue? ");
+		String input=reader.readLine();
+		if(input.equalsIgnoreCase("yes")){
+			System.out.println("Thank you");
+		}else{
+			System.out.println("Thank you for using our service\n");
+			System.exit(0);
+		}
 	}
 
 	public static String traverseAString(String str) {
