@@ -1,5 +1,15 @@
 package main.com.Projects.CurrentCurrencyConverter;
+/*
+ * For this current moment, I will have to say that everything here functions as they should.
+ * Next Step is to ask the user for a country
+ *
+ * The website used: https://app.exchangerate-api.com/dashboard
+ * The API key: "f3468cbc21776760eb1cebca"
+ * Full api call string link: "https://v6.exchangerate-api.com/v6/f3468cbc21776760eb1cebca/latest/USD"
+ *
+ * */
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -13,40 +23,38 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
+import static main.com.Projects.CurrentCurrencyConverter.Main.doYouWishToContinue;
+
 public class App {
 	static String apiKey = "";
-	static String apiCallStringIUse = "";
+	static String apiCallStringIUse = "https://v6.exchangerate-api.com/v6/"+apiKey+"/latest/";
 	static String enteredCountry = null;
 	static String CurrencyToExchangeFrom = null;
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-	public static void main(String[] args) {
-		System.out.println("This app should be able to get the current price of any currency in real time"
-				+ " and after finding the price in real time, it will give the option of how much I will get"
-				+ "\nfor an exact amount in that instantaneous time. For example, 100 dollars in GBP at this instant.");
-		System.out.println("From Which Currency?: ");
-
-		try {
-			userInput();
-			System.out.println("To Which Currency?");
-			enteredCountry = reader.readLine();
-			String fixedCurrencyToBeExchangedIntoString = traverseAString(enteredCountry);
-			System.out.println("The exchange Currency selected is: " + fixedCurrencyToBeExchangedIntoString);
-			currentPriceFetchInUSD(fixedCurrencyToBeExchangedIntoString);
-		} catch (URISyntaxException | IOException | InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-	}
+	static String correctInput;
 
 	public static void userInput() throws IOException {
-
 		String input = reader.readLine();
-
-		String correctInput = traverseAString(input);
+		correctInput = traverseAString(input);
 		System.out.println("The country selected is: " + correctInput);
 		CurrencyToExchangeFrom = correctInput;
 		System.out.println("");
 	}
+
+	public static void WorkingCode() throws IOException, URISyntaxException, InterruptedException {
+		System.out.println("Welcome. Thank you for using our service!");
+		System.out.println("Which Currency Would You Like To Exchange?");
+		userInput();
+
+		System.out.println("To Which World Currency Would You Like To Exchange The "+ correctInput);
+		enteredCountry = reader.readLine();
+		String fixedCurrencyToBeExchangedIntoString = traverseAString(enteredCountry);
+		System.out.println("The exchange Currency selected is: " + fixedCurrencyToBeExchangedIntoString);
+
+		currentPriceFetchInUSD(fixedCurrencyToBeExchangedIntoString);
+		doYouWishToContinue();
+	}
+
 
 	public static void currentPriceFetchInUSD(String str) throws URISyntaxException, IOException, InterruptedException {
 		enteredCountry = str;
@@ -59,8 +67,17 @@ public class App {
 
 		System.out.println();
 		JSONObject jsonObject = new JSONObject(postResponse.body());
-		JSONObject getGEO = jsonObject.getJSONObject("conversion_rates");
-		Object level = getGEO.get(enteredCountry);
+		JSONObject getGEO;
+		Object level=null;
+
+		try{
+			getGEO = jsonObject.getJSONObject("conversion_rates");
+			level = getGEO.get(enteredCountry);
+		}catch (JSONException e){
+			System.err.println("Wrong currency code was entered. Please review the Currency Code and enter" +
+					" repeat the process!");
+			WorkingCode();
+		}
 
 		System.out.println("How much money would you like to exchange?");
 
@@ -73,17 +90,6 @@ public class App {
 		System.out.println();
 		System.out.printf("The value of %s %s in %s is %s", amountOfCurrency,
 				CurrencyToExchangeFrom, enteredCountry, String.format("%.4f",total));
-	}
-
-	public static void doYouWishToContinue() throws IOException {
-		System.out.println("Do you wish to continue? ");
-		String input=reader.readLine();
-		if(input.equalsIgnoreCase("yes")){
-			System.out.println("Thank you");
-		}else{
-			System.out.println("Thank you for using our service\n");
-			System.exit(0);
-		}
 	}
 
 	public static String traverseAString(String str) {
